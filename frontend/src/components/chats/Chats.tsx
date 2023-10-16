@@ -7,7 +7,7 @@ export default function Chats() {
         <>
             <Search />
 
-            <div> {/* chats */}
+            <div className="overflow-y-scroll max-h-[55vh] pb-14"> {/* chats */}
                 <Chat />
 
                 <Chat />
