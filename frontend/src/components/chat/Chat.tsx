@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export default function Chat() {
     return (
-        <Link href="/chats/x" className="flex flex-row place-content-start items-center gap-2 px-3 py-2 mx-5 border-b-[1px] hover:bg-black/10 dark:hover:bg-white/10">
+        <Link href="/chats/x" className="flex flex-row place-content-start items-center gap-2 px-3 py-2.5 border-b-[1px] hover:bg-black/10 dark:hover:bg-white/10">
             <Image src={"https://api.multiavatar.com/Binx Bond.svg"} className="rounded-full" alt={""} width={50} height={50} />
             <div className="flex flex-row place-content-between items-center w-full">
                 <div className="flex flex-col place-content-start">

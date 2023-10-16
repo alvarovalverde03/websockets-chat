@@ -14,7 +14,18 @@ export default function Chats() {
 
                 <Chat />
 
-                <Chat />               
+                <Chat />       
+                <Chat />     
+                <Chat />     
+                <Chat />     
+                <Chat />            
+                <Chat />      
+                <Chat />     
+                <Chat />     
+                <Chat />     
+                <Chat />     
+                <Chat />     
+                <Chat />     
             </div>
         </>
     )

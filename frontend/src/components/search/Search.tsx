@@ -1,6 +1,6 @@
 export default function Search() {
     return (
-        <div className="flex justify-between items-center mb-3 px-5 py-5">
+        <div className="flex justify-between items-center mb-3 pb-5">
             <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
                     <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 50 50">
@@ -12,7 +12,10 @@ export default function Search() {
                 />
             </div>
             <div>
-                <button className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-black dark:bg-white text-primary-foreground hover:bg-black/90 dark:hover:bg-white/90 h-10 px-4 py-2 text-gray-100 dark:text-black">
+                <button 
+                    className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-black dark:bg-white text-primary-foreground hover:bg-black/90 dark:hover:bg-white/90 h-10 px-4 py-2 text-gray-100 dark:text-black"
+                    disabled
+                >
                     Create group
                 </button>   
             </div>

@@ -22,7 +22,7 @@ export default function RootLayout({
           <div className="h-3/4 w-1/2 rounded-lg border bg-black text-card-foreground shadow-sm">
             <Header />
 
-            <div>
+            <div className='pt-8 px-10 max-h-[85%] overflow-y-scroll'>
               {children}
             </div>
           </div>
