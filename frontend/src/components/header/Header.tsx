@@ -1,13 +1,33 @@
 import Image from "next/image"
 import Link from "next/link"
 
-export default function Header() {
+const getData = async () => {
+    try {
+        const users = await fetch("http://localhost:3000/api/users", {
+            cache: 'force-cache',
+        })
+        const data = await users.json()
+        return data.users
+    } catch (e) {
+        console.log(e)
+        return [{ id: 0, name: "Error" }]
+    }
+}
+
+type User = {
+    id: number,
+    name: string,
+}
+
+export default async function Header() {
+    const data: User[] = await getData()
+
     return (
         <header className="px-5 py-3 border-b-2"> {/* header */}
             <div className="flex flex-row place-content-between items-center">
                 <div className="flex flex-row place-content-start items-center gap-2">
                     <Image src={"https://api.multiavatar.com/Binx Bond.svg"} className="rounded-full" alt={""} width={40} height={40} />
-                    <p>name</p>
+                    <p>{data[0].name}</p>
                 </div>
                 <div>
                     <Link href="/settings">
