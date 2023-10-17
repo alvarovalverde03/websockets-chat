@@ -12,7 +12,7 @@ export default function Chat() {
                 </div>
                 <div className="flex flex-col gap-1">
                     <span className="text-slate-400 text-xs capitalize">13:23</span>
-                    <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-m font-medium text-blue-900 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-100">3</span>
+                    <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-m font-medium text-blue-900 bg-cyan-100 rounded-full dark:bg-cyan-900 dark:text-blue-100">3</span>
                 </div>
             </div>
         </Link>
