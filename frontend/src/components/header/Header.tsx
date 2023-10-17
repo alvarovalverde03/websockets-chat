@@ -3,7 +3,9 @@ import Link from "next/link"
 
 const getData = async () => {
     try {
-        const users = await fetch("http://localhost:3000/api/users", {
+        const basePath = process.env.NODE_ENV === 'production' ? process.env.API_BASE_PATH : 'http://localhost:3000/api'
+
+        const users = await fetch(`${basePath}/users`, {
             cache: 'force-cache',
         })
         const data = await users.json()
