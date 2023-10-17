@@ -7,7 +7,37 @@ export default function Chats() {
         <>
             <Search />
 
-            <div className="overflow-y-auto max-h-[55vh] pb-14"> {/* chats */}
+            <div className="overflow-y-auto lg:max-h-[55vh] max-h-full lg:pb-14 pb-20"> {/* chats */}
+                <Chat />
+
+                <Chat />
+                <Chat />
+
+                <Chat />
+                <Chat />
+
+                <Chat />
+                <Chat />
+
+                <Chat />
+                <Chat />
+
+                <Chat />
+                <Chat />
+
+                <Chat />
+                <Chat />
+
+                <Chat />
+                <Chat />
+
+                <Chat />
+                <Chat />
+
+                <Chat />
+                <Chat />
+
+                <Chat />
                 <Chat />
 
                 <Chat />
