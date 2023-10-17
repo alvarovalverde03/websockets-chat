@@ -22,7 +22,7 @@ export default function RootLayout({
           <div className="h-3/4 w-1/2 rounded-lg border bg-black text-card-foreground shadow-sm overflow-hidden">
             <Header />
 
-            <div className='pt-8 px-10 max-h-[85%] overflow-hidden'>
+            <div className='pt-8 px-10 max-h-[85%] h-full overflow-hidden'>
               {children}
             </div>
           </div>
