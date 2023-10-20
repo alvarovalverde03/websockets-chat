@@ -6,7 +6,7 @@ export default function SendInput() {
       />
 
       <button className="absolute inset-y-0 right-0 top-0 flex items-top pt-2 pr-3.5 z-40">
-        <svg className="w-6 h-6 text-gray-500 dark:text-gray-100 hover:text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg className="w-6 h-6 text-gray-500 dark:text-gray-100 hover:text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="m3 3 3 9-3 9 19-9Z" />
           <path d="M6 12h16" />
         </svg>
