@@ -14,5 +14,5 @@ export async function sendMessage (data: FormData) {
 
     socket.emit("message", message)
 
-    await addMessage(message)
+    // await addMessage(message)
 }

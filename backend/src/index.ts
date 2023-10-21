@@ -10,10 +10,6 @@ const server = app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`)
 })
 
-app.get('/', (req: Request, res: Response) => {
-  return res.send('Received a GET HTTP method')
-})
-
 app.get('/api/users', (req: Request, res: Response) => {
   const users = [
     { id: 1, name: 'John Doe' },
@@ -32,14 +28,6 @@ app.get('/api/messages', (req: Request, res: Response) => {
   return res.status(200).json({ messages })
 })
 
-app.post('/api/messages', (req: Request, res: Response) => {
-  if (!req.body) return res.status(400).json({ error: 'Content is required' })
-
-  const msg = DBmessages.push(req.body)
-
-  return res.status(200).json({ msg })
-})
-
 // Socket.io
 const io = new Server(server, {
   cors:{
@@ -48,7 +36,7 @@ const io = new Server(server, {
   },
   connectionStateRecovery: {
     // the backup duration of the sessions and the packets
-    maxDisconnectionDuration: 2 * 60 * 1000,
+    maxDisconnectionDuration: 2 * 60 * 1000
   }
 })
 

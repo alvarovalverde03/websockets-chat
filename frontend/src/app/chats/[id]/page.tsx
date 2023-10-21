@@ -12,12 +12,8 @@ import { io } from "socket.io-client"
 const socket = io("http://localhost:8000")
 
 // client-side
-socket.on("connection", () => {
-    console.log('connect: ', socket.id);    
-
-    socket.on("message", (data) => {
-        console.log(data)
-    })
+socket.on("connect", () => {
+    console.log('connect: ', socket.id)    
 })
   
 socket.on("disconnect", () => {
@@ -26,7 +22,11 @@ socket.on("disconnect", () => {
 
 export default function Chats() {
     const [messages, setMessages] = useState<TMessage[]>([])
-    const ref = useRef<HTMLDivElement>(null);
+    const ref = useRef<HTMLDivElement>(null)
+
+    socket.on("new_message", (data: any) => {        
+        getMessages()
+    })
 
     async function getMessages() {
         const messages = await getApiMessages()
@@ -37,16 +37,6 @@ export default function Chats() {
         getMessages()
         if (messages.length) ref.current?.scrollIntoView({ behavior: "smooth", block: "end" })
     }, [messages.length])
-
-
-    socket.on("message", (data) => {
-        console.log(data); // x8WIv7-mJelg7on_ALbx  // x8WIv7-mJelg7on_ALbx
-        // hello world
-        addMessage(data)
-        console.log(messagesBD)
-        getMessages()
-        console.log(messages)
-    })
 
     function handleOnSend() {
         getMessages()
