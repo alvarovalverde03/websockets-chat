@@ -20,7 +20,8 @@ export const messagesBD: TMessage[] = [
 
 export const getApiMessages = async () => {
     try {
-        const basePath = process.env.NODE_ENV === 'production' ? process.env.API_BASE_PATH : 'http://localhost:3000/api'
+        // const basePath = process.env.NODE_ENV === 'production' ? process.env.API_BASE_PATH : 'http://localhost:3000/api'
+        const basePath = 'https://realtime-chat.1.ie-1.fl0.io/api'
 
         const messages = await fetch(`${basePath}/messages`)
 
