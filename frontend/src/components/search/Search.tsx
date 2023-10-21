@@ -1,6 +1,6 @@
 export default function Search() {
     return (
-        <div className="flex justify-between items-center mb-3 pb-5 gap-5">
+        <div className="flex justify-between items-center mb-5 gap-5">
             <div className="relative w-full">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
                     <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 50 50">

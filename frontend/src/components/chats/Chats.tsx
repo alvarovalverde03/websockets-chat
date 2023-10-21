@@ -7,40 +7,13 @@ export default function Chats() {
         <>
             <Search />
 
-            <div className="overflow-y-auto lg:max-h-[55vh] max-h-full lg:pb-14 pb-20"> {/* chats */}
-                <Chat />
-
-                <Chat />
-                <Chat />
-
-                <Chat />
-                <Chat />
-
-                <Chat />
-                <Chat />
-
-                <Chat />
-                <Chat />
-
-                <Chat />
-                <Chat />
-
-                <Chat />
-                <Chat />
-
-                <Chat />
-                <Chat />
-
-                <Chat />
-                <Chat />
-
-                <Chat />
-                <Chat />
-
-                <Chat />
-                <Chat />
-
-                <Chat />
+            <div className="overflow-y-auto lg:max-h-[55vh] h-full lg:pb-14 pb-20"> {/* chats */}
+                <Chat 
+                    name="Global Chat"
+                    lastMessage="The last message will go here"
+                    time="00:00"
+                    notifications={1}
+                />
             </div>
         </>
     )
