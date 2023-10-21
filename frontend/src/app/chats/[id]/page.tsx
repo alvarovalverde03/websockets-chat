@@ -1,8 +1,12 @@
-import ChatsCont from "@/components/chats/Chats"
+'use client'
+
 import Link from "next/link"
-import Image from "next/image"
-import Message from "@/components/message/Message"
+import { useEffect, useState } from "react"
 import SendInput from "@/components/sendInput/SendInput"
+import Message from "@/components/message/Message"
+import type { TMessage } from "@/utils/db"
+import { getApiMessages } from "@/utils/db"
+
 
 import { io } from "socket.io-client"
 
@@ -17,13 +21,22 @@ socket.on("disconnect", () => {
     console.log(socket.id); // undefined
 })
 
-const messages = [
-    "Ble ble ble ble ble fdhjsdddddddddddddddgbuasidbsajdbjs",
-    "Bla bla bla bla Bla bla bla bla",
-    "Sed euismod, velit ac bibendum bibendum, elit."
-]
-
 export default function Chats() {
+    const [messages, setMessages] = useState<TMessage[]>([])
+
+    function getMessages() {
+        const messages = getApiMessages()
+        setMessages(messages)
+    }
+
+    useEffect(() => {
+        getMessages()
+    }, [])
+
+    function handleOnSend() {
+        getMessages()
+    }
+
     return (
         <>
             <Link href="/chats" className="underline">
@@ -35,16 +48,17 @@ export default function Chats() {
 
             <div className="w-full h-full">
                 <div className="w-full h-full pt-2 pb-5 flex flex-col justify-end gap-2">
-        
+
                     <Message message="hola que tal estamos" isMe={true} />
-                    <Message message={messages[0]} isMe={false} />
-                    <Message message={messages[1]} isMe={true} />
-                    <Message message={messages[2]} isMe={false} />
-                    
+
+                    {messages.map((message, index) => (
+                        <Message message={message.content} isMe={message.isMe} key={index} />
+                    ))}
+
                 </div>
             </div>
 
-            <SendInput />
+            <SendInput onCreate={handleOnSend} />
         </>
     )
 }
