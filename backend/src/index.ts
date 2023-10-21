@@ -37,7 +37,8 @@ const io = new Server(server, {
   connectionStateRecovery: {
     // the backup duration of the sessions and the packets
     maxDisconnectionDuration: 2 * 60 * 1000
-  }
+  },
+  'transports': ['websocket', 'polling']
 })
 
 import chatHandler from './handlers/chatHandler'

@@ -15,7 +15,7 @@ export default function Chats() {
     const [messages, setMessages] = useState<TMessage[]>([])
     const ref = useRef<HTMLDivElement>(null)
 
-    const socket = io('https://realtime-chat.1.ie-1.fl0.io')
+    const socket = io('https://realtime-chat.1.ie-1.fl0.io', {'transports': ['websocket', 'polling']})
 
     // client-side
     socket.on("connect", () => {
