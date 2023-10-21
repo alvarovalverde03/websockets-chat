@@ -11,7 +11,7 @@ import { io } from "socket.io-client"
 
 const basePath = process.env.NODE_ENV === 'production' ? process.env.BASE_PATH : 'http://localhost:8000'
 
-const socket = io(basePath || 'http://localhost:8000')
+const socket = io(basePath)
 
 // client-side
 socket.on("connect", () => {
