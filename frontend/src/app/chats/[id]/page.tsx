@@ -11,7 +11,7 @@ import { io } from "socket.io-client"
 
 const basePath = process.env.NODE_ENV === 'production' ? process.env.BASE_PATH : 'http://localhost:8000'
 
-const socket = io(basePath)
+const socket = io('https://realtime-chat.1.ie-1.fl0.io')
 
 // client-side
 socket.on("connect", () => {
