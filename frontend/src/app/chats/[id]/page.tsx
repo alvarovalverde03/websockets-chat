@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import SendInput from "@/components/sendInput/SendInput"
 import Message from "@/components/message/Message"
 import type { TMessage } from "@/utils/db"
-import { addMessage, getApiMessages, messagesBD } from "@/utils/db"
+import { getApiMessages } from "@/utils/db"
 
 import { io } from "socket.io-client"
 
