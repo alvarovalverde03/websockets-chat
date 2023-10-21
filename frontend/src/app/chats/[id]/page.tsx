@@ -9,22 +9,22 @@ import { getApiMessages } from "@/utils/db"
 
 import { io } from "socket.io-client"
 
-const basePath = process.env.NODE_ENV === 'production' ? process.env.BASE_PATH : 'http://localhost:8000'
-
-const socket = io('https://realtime-chat.1.ie-1.fl0.io')
-
-// client-side
-socket.on("connect", () => {
-    console.log('connect: ', socket.id)    
-})
-  
-socket.on("disconnect", () => {
-    console.log('disconect: ', socket.id)
-})
+// const basePath = process.env.NODE_ENV === 'production' ? process.env.BASE_PATH : 'http://localhost:8000'
 
 export default function Chats() {
     const [messages, setMessages] = useState<TMessage[]>([])
     const ref = useRef<HTMLDivElement>(null)
+
+    const socket = io('https://realtime-chat.1.ie-1.fl0.io')
+
+    // client-side
+    socket.on("connect", () => {
+        console.log('connect: ', socket.id)    
+    })
+    
+    socket.on("disconnect", () => {
+        console.log('disconect: ', socket.id)
+    })
 
     socket.on("new_message", (data: any) => {        
         getMessages()
