@@ -1,6 +1,5 @@
 'use client'
 
-import { useForm } from 'react-hook-form'
 import { sendMessage } from '@/utils/chat'
 import { useState } from 'react';
 
@@ -21,26 +20,31 @@ export default function SendInput(props: any) {
     })
   }
 
-  function handleSend(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  function handleSend(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    sendMessage(form)
+    if (!form.message) return
 
-    const messageInput = document.getElementById("message") as HTMLInputElement
-    if (messageInput) messageInput.value = ""
+    sendMessage(form)
+    setForm({
+      message: ''
+    })
 
     props.onCreate()
   }
 
   return (
-    <form className="relative w-full pb-3">
+    <form className="relative w-full pb-3" onSubmit={handleSend}>
       <input type="text" id="message" name='message'
         onChange={handleInputOnChange}
-        className="pr-10 dark:placeholder-gray-400 dark:text-white flex h-10 w-full rounded-md border border-input bg-gray-400 dark:bg-black px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[1px] focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" 
-        placeholder="Escribe un mensaje..."
+        value={form.message}
+        className="pr-10 text-base dark:placeholder-gray-400 dark:text-white flex h-10 w-full rounded-md border border-input bg-gray-400 dark:bg-black px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[1px] focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed" 
+        placeholder="Escribe un mensaje..." autoComplete="off"
       />
 
-      <button  onClick={handleSend} type='submit' className="absolute inset-y-0 right-0 top-0 flex items-top pt-2 pr-3.5 z-40">
+      <button type='submit' className="absolute inset-y-0 right-0 top-0 flex items-top pt-2 pr-3.5 z-40 disabled:opacity-40" 
+              { ...(form.message ? {} : { disabled: true }) }
+      >
         <svg className="w-6 h-6 text-gray-500 dark:text-gray-100 hover:text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="m3 3 3 9-3 9 19-9Z" />
           <path d="M6 12h16" />
