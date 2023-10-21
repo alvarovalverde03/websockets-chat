@@ -9,7 +9,9 @@ import { getApiMessages } from "@/utils/db"
 
 import { io } from "socket.io-client"
 
-const socket = io("http://localhost:8000")
+const basePath = process.env.NODE_ENV === 'production' ? process.env.BASE_PATH : 'http://localhost:8000'
+
+const socket = io(basePath || 'http://localhost:8000')
 
 // client-side
 socket.on("connect", () => {
