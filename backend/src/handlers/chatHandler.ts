@@ -3,8 +3,8 @@ const chatHandler = (io, socket) => {
         io.sockets.emit('chat_message', msg)
     }
 
-    socket.on('disconnect', () => {
-        console.log('user disconnected: ', socket.id)
+    socket.on('message', (msg) => {
+        socket.emit('message', msg)
     })
 
     socket.on('chat:send', sendMessage)
