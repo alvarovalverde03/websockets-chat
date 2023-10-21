@@ -1,10 +1,12 @@
 import express, { Request, Response } from 'express'
 import { Server } from 'socket.io'
+import cors from 'cors'
 
 const app = express()
 const port = process.env.PORT || 8000
 
 app.use(express.json())
+app.use(cors())
 
 const server = app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`)
@@ -30,6 +32,9 @@ app.get('/api/messages', (req: Request, res: Response) => {
 
 // Socket.io
 const io = new Server(server, {
+  cors:{
+    origin: '*'
+  },
   connectionStateRecovery: {
     // the backup duration of the sessions and the packets
     maxDisconnectionDuration: 2 * 60 * 1000
