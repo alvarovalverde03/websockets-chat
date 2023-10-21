@@ -30,10 +30,6 @@ app.get('/api/messages', (req: Request, res: Response) => {
 
 // Socket.io
 const io = new Server(server, {
-  cors:{
-    origin: '*',
-    methods: ['GET', 'POST']
-  },
   connectionStateRecovery: {
     // the backup duration of the sessions and the packets
     maxDisconnectionDuration: 2 * 60 * 1000
