@@ -16,6 +16,22 @@
   }
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #777777;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 3px;
+}
+
+
+*::-webkit-scrollbar-thumb {
+  background-color: #777777;
+  border-radius: 14px;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

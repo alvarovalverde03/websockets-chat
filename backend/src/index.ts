@@ -4,6 +4,8 @@ import { Server } from 'socket.io'
 const app = express()
 const port = process.env.PORT || 8000
 
+app.use(express.json())
+
 const server = app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`)
 })
@@ -18,9 +20,24 @@ app.get('/api/users', (req: Request, res: Response) => {
     { id: 2, name: 'Pepe' },
   ]
 
-  console.log('Returning users: ', users)
-
   return res.status(200).json({ users })
+})
+
+
+import { DBmessages } from './db'
+
+app.get('/api/messages', (req: Request, res: Response) => {
+  const messages = DBmessages
+
+  return res.status(200).json({ messages })
+})
+
+app.post('/api/messages', (req: Request, res: Response) => {
+  if (!req.body) return res.status(400).json({ error: 'Content is required' })
+
+  const msg = DBmessages.push(req.body)
+
+  return res.status(200).json({ msg })
 })
 
 // Socket.io
@@ -38,13 +55,13 @@ const io = new Server(server, {
 import chatHandler from './handlers/chatHandler'
 
 const onConection = (socket: any) => {
-  console.log('a user connected: ', socket.id)
+  // console.log('a user connected: ', socket.id)
 
   // HANDLERS
   chatHandler(io, socket)
 
   socket.on('disconnect', () => {
-    console.log('user disconnected: ', socket.id)
+    // console.log('user disconnected: ', socket.id)
   })
 }
 

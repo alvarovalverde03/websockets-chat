@@ -1,37 +1,52 @@
 'use client'
 
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import SendInput from "@/components/sendInput/SendInput"
 import Message from "@/components/message/Message"
 import type { TMessage } from "@/utils/db"
-import { getApiMessages } from "@/utils/db"
-
+import { addMessage, getApiMessages, messagesBD } from "@/utils/db"
 
 import { io } from "socket.io-client"
 
 const socket = io("http://localhost:8000")
 
 // client-side
-socket.on("connect", () => {
-    console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+socket.on("connection", () => {
+    console.log('connect: ', socket.id);    
+
+    socket.on("message", (data) => {
+        console.log(data)
+    })
 })
   
 socket.on("disconnect", () => {
-    console.log(socket.id); // undefined
+    console.log('disconect: ', socket.id)
 })
 
 export default function Chats() {
     const [messages, setMessages] = useState<TMessage[]>([])
+    const ref = useRef<HTMLDivElement>(null);
 
-    function getMessages() {
-        const messages = getApiMessages()
+    async function getMessages() {
+        const messages = await getApiMessages()
         setMessages(messages)
     }
 
     useEffect(() => {
         getMessages()
-    }, [])
+        if (messages.length) ref.current?.scrollIntoView({ behavior: "smooth", block: "end" })
+    }, [messages.length])
+
+
+    socket.on("message", (data) => {
+        console.log(data); // x8WIv7-mJelg7on_ALbx  // x8WIv7-mJelg7on_ALbx
+        // hello world
+        addMessage(data)
+        console.log(messagesBD)
+        getMessages()
+        console.log(messages)
+    })
 
     function handleOnSend() {
         getMessages()
@@ -46,15 +61,16 @@ export default function Chats() {
                 </svg>
             </Link>
 
-            <div className="w-full h-full">
-                <div className="w-full h-full pt-2 pb-5 flex flex-col justify-end gap-2">
+            <div className="w-full h-full overflow-y-auto scroll-smooth">
+                <div className="w-full h-auto pt-2 pb-5 flex flex-col justify-end gap-2">
 
                     <Message message="hola que tal estamos" isMe={true} />
 
                     {messages.map((message, index) => (
                         <Message message={message.content} isMe={message.isMe} key={index} />
                     ))}
-
+                    
+                    <div ref={ref} className="mb-[-10px]" />
                 </div>
             </div>
 

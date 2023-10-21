@@ -20,12 +20,12 @@ export default function SendInput(props: any) {
     })
   }
 
-  function handleSend(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSend(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
     if (!form.message) return
 
-    sendMessage(form)
+    await sendMessage(form)
     setForm({
       message: ''
     })
@@ -34,7 +34,7 @@ export default function SendInput(props: any) {
   }
 
   return (
-    <form className="relative w-full pb-3" onSubmit={handleSend}>
+    <form className="relative w-full py-3" onSubmit={handleSend}>
       <input type="text" id="message" name='message'
         onChange={handleInputOnChange}
         value={form.message}
@@ -42,7 +42,7 @@ export default function SendInput(props: any) {
         placeholder="Escribe un mensaje..." autoComplete="off"
       />
 
-      <button type='submit' className="absolute inset-y-0 right-0 top-0 flex items-top pt-2 pr-3.5 z-40 disabled:opacity-40" 
+      <button type='submit' className="absolute inset-y-0 right-0 top-0 flex items-top pt-5 pr-3.5 z-40 disabled:opacity-40" 
               { ...(form.message ? {} : { disabled: true }) }
       >
         <svg className="w-6 h-6 text-gray-500 dark:text-gray-100 hover:text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
