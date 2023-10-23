@@ -1,7 +1,7 @@
 'use client'
 
 import { redirect, useRouter } from "next/navigation"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export type FormData = {
   name: string;
@@ -10,17 +10,19 @@ export type FormData = {
 export default function Home() {
   const { push } = useRouter()
 
-  if (localStorage.getItem('user_name') && localStorage.getItem('user_id')) redirect('/chats')
+  useEffect(() => {
+    if (localStorage.getItem('user_name') && localStorage.getItem('user_id')) redirect('/chats')
+  }, [])
 
   const [form, setForm] = useState<FormData>({
     name: ''
   })
 
   function handleInputOnChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value }  = event.target
+    const { name, value } = event.target
     setForm({
       ...form,
-      [name]: value 
+      [name]: value
     })
   }
 
@@ -44,12 +46,12 @@ export default function Home() {
           <input type="text" id="name" name='name'
             onChange={handleInputOnChange}
             value={form.name}
-            className="text-base dark:placeholder-gray-400 dark:text-white flex mt-2 h-10 w-full rounded-md border border-input bg-gray-400 dark:bg-black px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[1px] focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed" 
+            className="text-base dark:placeholder-gray-400 dark:text-white flex mt-2 h-10 w-full rounded-md border border-input bg-gray-400 dark:bg-black px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[1px] focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed"
             placeholder="Write your name..." autoComplete="off"
           />
 
-          <button type='submit' className="flex items-center justify-center w-full mt-5 py-2 text-lg disabled:opacity-40 rounded-md border bg-black dark:bg-white text-white dark:text-black" 
-                  { ...(form.name ? {} : { disabled: true }) }
+          <button type='submit' className="flex items-center justify-center w-full mt-5 py-2 text-lg disabled:opacity-40 rounded-md border bg-black dark:bg-white text-white dark:text-black"
+            {...(form.name ? {} : { disabled: true })}
           >
             Confirm
           </button>
