@@ -1,6 +1,7 @@
 'use client'
 
 import { sendMessage } from '@/utils/chat'
+import { TMessage } from '@/utils/db';
 import { useState } from 'react';
 
 export type FormData = {
@@ -25,7 +26,14 @@ export default function SendInput(props: any) {
 
     if (!form.message) return
 
-    await sendMessage(form)
+    const data: TMessage = {
+      content: form.message,
+      user_name: localStorage.getItem('user_name') || '',
+      user_id: localStorage.getItem('user_id') || '',
+      date: new Date().toISOString()
+    }
+
+    await sendMessage(data)
     setForm({
       message: ''
     })

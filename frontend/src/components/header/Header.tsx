@@ -1,35 +1,32 @@
+'use client'
+
 import Image from "next/image"
 import Link from "next/link"
-
-const getData = async () => {
-    try {
-        const basePath = process.env.NODE_ENV === 'production' ? process.env.API_BASE_PATH : 'http://localhost:3000/api'
-
-        const users = await fetch(`${basePath}/users`, {
-            cache: 'force-cache',
-        })
-        const data = await users.json()
-        return data.users
-    } catch (e) {
-        console.log(e)
-        return [{ id: 0, name: "Error" }]
-    }
-}
+import { useEffect, useState } from "react"
 
 type User = {
     id: number,
     name: string,
 }
 
-export default async function Header() {
-    const data: User[] = await getData()
+export default function Header() {
+    const [userName, setUserName] = useState<string>('Unknown')
+
+    useEffect(() => {
+        let user_name: string = 'Unknown'
+        if (localStorage.getItem('user_name')) user_name = localStorage.getItem('user_name') as string
+
+        setUserName(user_name)
+    }, [])
+
+    
 
     return (
         <header className="px-5 py-3 border-b-2"> {/* header */}
             <div className="flex flex-row place-content-between items-center">
                 <div className="flex flex-row place-content-start items-center gap-2">
                     <Image src={"https://api.multiavatar.com/Binx Bond.svg"} className="rounded-full" alt={""} width={40} height={40} />
-                    <p>{data[0].name}</p>
+                    <p>{userName}</p>
                 </div>
                 <div>
                     <Link href="/settings">

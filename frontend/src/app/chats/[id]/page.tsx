@@ -15,6 +15,8 @@ export default function Chats() {
     const [messages, setMessages] = useState<TMessage[]>([])
     const ref = useRef<HTMLDivElement>(null)
 
+    
+    // const socket = io('http://localhost:8000', {'transports': ['websocket', 'polling']})
     const socket = io('https://realtime-chat.1.ie-1.fl0.io', {'transports': ['websocket', 'polling']})
 
     // client-side
@@ -56,10 +58,14 @@ export default function Chats() {
             <div className="w-full h-full overflow-y-auto scroll-smooth">
                 <div className="w-full h-auto pt-2 pb-5 flex flex-col justify-end gap-2">
 
-                    <Message message="hola que tal estamos" isMe={true} />
-
                     {messages.map((message, index) => (
-                        <Message message={message.content} isMe={message.isMe} key={index} />
+                        <Message 
+                            message={message.content} 
+                            user_name={message.user_name} 
+                            user_id={message.user_id}
+                            date={message.date}
+                            key={index} 
+                        />
                     ))}
                     
                     <div ref={ref} className="mb-[-10px]" />
