@@ -27,8 +27,6 @@ export default function Home() {
   }
 
   function handleSend(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
     if (!form.name) return
 
     localStorage.setItem('user_name', form.name)
