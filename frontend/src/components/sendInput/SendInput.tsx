@@ -47,7 +47,7 @@ export default function SendInput(props: any) {
         onChange={handleInputOnChange}
         value={form.message}
         className="pr-10 text-base dark:placeholder-gray-400 dark:text-white flex h-10 w-full rounded-md border border-input bg-gray-400 dark:bg-black px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[1px] focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed" 
-        placeholder="Escribe un mensaje..." autoComplete="off"
+        placeholder="Write a message..." autoComplete="off"
       />
 
       <button type='submit' className="absolute inset-y-0 right-0 top-0 flex items-top pt-5 pr-3.5 z-40 disabled:opacity-40" 

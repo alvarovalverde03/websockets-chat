@@ -1,6 +1,6 @@
 export default function Search() {
     return (
-        <div className="flex justify-between items-center mb-5 gap-5">
+        <div className="flex justify-between items-center mb-5 gap-3 lg:gap-4">
             <div className="relative w-full">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
                     <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 50 50">
@@ -8,13 +8,14 @@ export default function Search() {
                     </svg>
                 </div>
                 <input type="text" id="input-group-1" 
-                    className="pl-10 dark:placeholder-gray-400 dark:text-white flex h-10 w-full rounded-md border border-input bg-gray-400 dark:bg-black px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[1px] focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Busca un chat" 
+                    className="pl-10 dark:placeholder-gray-400 dark:text-white flex h-10 w-full rounded-md border border-input bg-gray-400 dark:bg-black px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[1px] focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    placeholder="Search chat..." 
                     autoComplete="off"
                 />
             </div>
             <div>
                 <button 
-                    className="leading-4 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-black dark:bg-white text-primary-foreground hover:bg-black/90 dark:hover:bg-white/90 h-10 px-4 py-2 text-gray-100 dark:text-black"
+                    className="leading-4 inline-flex items-center justify-center rounded-md text-base font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-black dark:bg-white text-primary-foreground hover:bg-black/90 dark:hover:bg-white/90 h-10 px-4 py-2 text-gray-100 dark:text-black"
                     disabled
                 >
                     Create group
