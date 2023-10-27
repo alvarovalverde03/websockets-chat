@@ -49,7 +49,7 @@ export default function Chats() {
     return (
         <>
             <Link href="/chats" className="underline">
-                <svg className="w-7 h-7 text-gray-500 dark:text-gray-100 hover:text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-7 h-7 text-black dark:text-white hover:opacity-70" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M6 8L2 12L6 16"/>
                     <path d="M2 12H22"/>
                 </svg>

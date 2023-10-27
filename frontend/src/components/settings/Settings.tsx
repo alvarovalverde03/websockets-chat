@@ -33,7 +33,7 @@ export default function Settings({ open, setOpen }: SettingsProps) {
   return (
     <div className={`absolute top-0 left-0 z-50 h-[100vh] max-w-[100vw] w-[100vw] flex justify-center items-center backdrop-blur ${ open ? '' : 'hidden'}`}>
 
-      <div className="bg-black border-white border-2 rounded-lg p-5 flex flex-col">
+      <div className="bg-white dark:bg-black border-black dark:border-white text-black dark:text-white border-2 rounded-lg p-5 flex flex-col">
         <div className="flex justify-between mb-4">
           <h2 className="text-2xl font-medium">Settings</h2>
           <button onClick={() => setOpen(false)}>
@@ -48,7 +48,7 @@ export default function Settings({ open, setOpen }: SettingsProps) {
         <form className="w-full py-3"  onSubmit={handleSubmit}>
           <label>New name:</label>
           <input type="text" id="name" name='name'
-            className="text-base dark:placeholder-gray-400 dark:text-white flex mt-2 h-10 w-full rounded-md border border-input bg-gray-400 dark:bg-black px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[1px] focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed"
+            className="text-base placeholder-gray-800 dark:placeholder-gray-400 text-black dark:text-white flex mt-2 h-10 w-full rounded-md border border-black dark:border-white border-input bg-gray-100 dark:bg-black px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[1px] focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed"
             placeholder="Write your new name..." autoComplete="off"
             onChange={handleInputOnChange}
             value={form.name}

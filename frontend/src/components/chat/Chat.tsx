@@ -19,7 +19,7 @@ export default function Chat({ name, lastMessage, time, notifications }: Message
                 </div>
                 <div className="flex flex-col gap-1">
                     <span className="text-slate-400 text-xs capitalize">{ time }</span>
-                    <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-m font-medium text-blue-900 bg-cyan-100 rounded-full dark:bg-cyan-900 dark:text-blue-100">{ notifications }</span>
+                    <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-m font-medium text-blue-900 bg-cyan-200 rounded-full dark:bg-cyan-900 dark:text-blue-100">{ notifications }</span>
                 </div>
             </div>
         </Link>

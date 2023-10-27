@@ -46,16 +46,15 @@ export default function SendInput(props: any) {
       <input type="text" id="message" name='message'
         onChange={handleInputOnChange}
         value={form.message}
-        className="pr-10 text-base dark:placeholder-gray-400 dark:text-white flex h-10 w-full rounded-md border border-input bg-gray-400 dark:bg-black px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[1px] focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed" 
+        className="pr-10 text-base placeholder-gray-800 dark:placeholder-gray-400 text-black dark:text-white flex h-10 w-full rounded-md border border-black dark:border-white border-input bg-gray-100 dark:bg-black px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[1px] focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed" 
         placeholder="Write a message..." autoComplete="off"
       />
 
-      <button type='submit' className="absolute inset-y-0 right-0 top-0 flex items-top pt-5 pr-3.5 z-40 disabled:opacity-40" 
+      <button type='submit' className="absolute inset-y-0 right-0 top-0 flex items-top pt-[1.125rem] pr-3 z-40 disabled:opacity-40" 
               { ...(form.message ? {} : { disabled: true }) }
       >
-        <svg className="w-6 h-6 text-gray-500 dark:text-gray-100 hover:text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="m3 3 3 9-3 9 19-9Z" />
-          <path d="M6 12h16" />
+        <svg className="w-7 h-7 fill-dark dark:fill-white hover:text-gray-500" viewBox="0 0 24 24">
+          <path d="M3 20V4l19 8l-19 8Zm2-3l11.85-5L5 7v3.5l6 1.5l-6 1.5V17Zm0 0V7v10Z"/>
         </svg>
       </button>
     </form>
