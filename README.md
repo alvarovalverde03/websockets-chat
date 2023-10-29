@@ -4,7 +4,7 @@
 </div>
 
 ## ℹ About The Project
-Real-time chat web using [NodeJS](), [Express](https://expressjs.com/) and [Socket.IO](https://socket.io/) on the backend, and [Next.JS](https://nextjs.org/) with [Tailwind CSS](https://tailwindcss.com/) on the frontend. This project enables instant messaging and supports features like chat rooms.
+Real-time chat web using [NodeJS](https://nodejs.org/), [Express](https://expressjs.com/) and [Socket.IO](https://socket.io/) on the backend, and [Next.JS](https://nextjs.org/) with [Tailwind CSS](https://tailwindcss.com/) on the frontend. This project enables instant messaging and supports features like chat rooms.
 
 ## 📜 Getting Started
 ### 1. Clone the repo
