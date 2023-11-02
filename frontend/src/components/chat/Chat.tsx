@@ -1,16 +1,19 @@
 import Image from "next/image"
 import Link from "next/link"
 
-type MessageProps = {
+type ChatProps = {
+    id: string
     name: string
     lastMessage: string
-    time: string
+    updatedAt: string
     notifications: number
 }
 
-export default function Chat({ name, lastMessage, time, notifications }: MessageProps) {
+export default function Chat({ id, name, lastMessage, updatedAt, notifications }: ChatProps) {
+    const time = new Date(updatedAt).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    
     return (
-        <Link href="/chats/x" className="flex flex-row place-content-start items-center gap-2 px-3 py-2.5 border-b-[1px] hover:bg-black/10 dark:hover:bg-white/10">
+        <Link href={`/chats/${id}`} className="flex flex-row place-content-start items-center gap-2 px-3 py-2.5 border-b-[1px] hover:bg-black/10 dark:hover:bg-white/10">
             <Image src={"https://api.multiavatar.com/Binx Bond.svg"} className="rounded-full" alt={""} width={50} height={50} />
             <div className="flex flex-row place-content-between items-center w-full">
                 <div className="flex flex-col place-content-start">

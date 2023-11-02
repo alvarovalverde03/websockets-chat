@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { getMessages } from "../services/chatService"
+import { getMessages } from "../services/chat.service"
 
 const router = Router()
 

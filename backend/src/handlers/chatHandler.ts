@@ -1,4 +1,4 @@
-import { addNewMessage } from '../services/chatService'
+import { addNewMessage } from '../services/chat.service'
 
 const chatHandler = (io, socket) => {
     const sendMessage = (msg) => {

@@ -1,5 +1,6 @@
 'use client'
 
+import { postApiUser } from "@/utils/db";
 import { redirect, useRouter } from "next/navigation"
 import { useEffect, useState } from 'react';
 
@@ -26,11 +27,13 @@ export default function Home() {
     })
   }
 
-  function handleSend(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSend(event: React.FormEvent<HTMLFormElement>) {
     if (!form.name) return
 
+    const user = await postApiUser(form.name)
+
     localStorage.setItem('user_name', form.name)
-    localStorage.setItem('user_id', Date.now().toString())
+    localStorage.setItem('user_id', user.id)
 
     push('/chats')
   }
