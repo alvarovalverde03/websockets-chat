@@ -1,6 +1,10 @@
-import express, { Request, Response } from 'express'
+import express from 'express'
 import { Server } from 'socket.io'
 import cors from 'cors'
+
+import usersRoutes from './routes/users.routes'
+import messagesRoutes from './routes/messages.routes'
+import chatsRoutes from './routes/chats.routes'
 
 const app = express()
 const port = process.env.PORT || 8000
@@ -8,26 +12,13 @@ const port = process.env.PORT || 8000
 app.use(express.json())
 app.use(cors())
 
+/* ROUTES */
+app.use('/api/users', usersRoutes)
+app.use('/api/messages', messagesRoutes)
+app.use('/api/chats', chatsRoutes)
+
 const server = app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`)
-})
-
-app.get('/api/users', (req: Request, res: Response) => {
-  const users = [
-    { id: 1, name: 'John Doe' },
-    { id: 2, name: 'Pepe' },
-  ]
-
-  return res.status(200).json({ users })
-})
-
-
-import { DBmessages } from './db'
-
-app.get('/api/messages', (req: Request, res: Response) => {
-  const messages = DBmessages
-
-  return res.status(200).json({ messages })
 })
 
 // Socket.io
