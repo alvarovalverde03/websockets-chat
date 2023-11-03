@@ -9,13 +9,12 @@ import { getApiMessages } from "@/utils/db"
 import { usePathname } from 'next/navigation'
 
 import { io } from "socket.io-client"
-import path from "path"
 
 export default function Chats() {
     const [messages, setMessages] = useState<TMessage[]>([])
     const ref = useRef<HTMLDivElement>(null)
     const path = usePathname()
-    const chatId = path.split('/').pop()
+    const chatPublicId = path.split('/').pop()
         
     let socket = io("http://localhost:8000", {'transports': ['websocket', 'polling']})
     if (process.env.NODE_ENV === "production") socket = io("https://realtime-chat.1.ie-1.fl0.io", {'transports': ['websocket', 'polling']})
@@ -73,7 +72,7 @@ export default function Chats() {
                 </div>
             </div>
 
-            <SendInput onCreate={handleOnSend} chatId={chatId} />
+            <SendInput onCreate={handleOnSend} chatPublicId={chatPublicId} />
         </>
     )
 }

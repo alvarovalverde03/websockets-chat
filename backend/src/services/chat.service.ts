@@ -13,8 +13,6 @@ export const getMessages = async () => {
 export const addNewMessage = async (message) => {
     if (!message) return null
 
-    console.log(message)
-
     const msg = await prisma.message.create({
         data: {
             text: message.text,

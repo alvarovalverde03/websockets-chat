@@ -31,7 +31,7 @@ export default function SendInput(props: any) {
       userName: localStorage.getItem('user_name') || '',
       userId: Number(localStorage.getItem('user_id')) || 0,
       createdAt: new Date().toISOString(),
-      chatPublicId: props.chatId
+      chatPublicId: props.chatPublicId
     }
 
     await sendMessage(data)
