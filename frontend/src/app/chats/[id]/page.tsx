@@ -6,18 +6,18 @@ import SendInput from "@/components/sendInput/SendInput"
 import Message from "@/components/message/Message"
 import type { TMessage } from "@/utils/db"
 import { getApiMessages } from "@/utils/db"
+import { usePathname } from 'next/navigation'
 
 import { io } from "socket.io-client"
-
-// const basePath = process.env.NODE_ENV === 'production' ? process.env.BASE_PATH : 'http://localhost:8000'
 
 export default function Chats() {
     const [messages, setMessages] = useState<TMessage[]>([])
     const ref = useRef<HTMLDivElement>(null)
-
-    
-    // const socket = io('http://localhost:8000', {'transports': ['websocket', 'polling']})
-    const socket = io('https://realtime-chat.1.ie-1.fl0.io', {'transports': ['websocket', 'polling']})
+    const path = usePathname()
+    const chatPublicId = path.split('/').pop()
+        
+    let socket = io("http://localhost:8000", {'transports': ['websocket', 'polling']})
+    if (process.env.NODE_ENV === "production") socket = io("https://realtime-chat.1.ie-1.fl0.io", {'transports': ['websocket', 'polling']})
 
     // client-side
     socket.on("connect", () => {
@@ -60,10 +60,10 @@ export default function Chats() {
 
                     {messages.map((message, index) => (
                         <Message 
-                            message={message.content} 
-                            user_name={message.user_name} 
-                            user_id={message.user_id}
-                            date={message.date}
+                            text={message.text} 
+                            userName={message.userName} 
+                            userId={message.userId}
+                            createdAt={message.createdAt}
                             key={index} 
                         />
                     ))}
@@ -72,7 +72,7 @@ export default function Chats() {
                 </div>
             </div>
 
-            <SendInput onCreate={handleOnSend} />
+            <SendInput onCreate={handleOnSend} chatPublicId={chatPublicId} />
         </>
     )
 }

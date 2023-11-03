@@ -1,4 +1,4 @@
-import { addNewMessage } from '../services/chatService'
+import { addNewMessage } from '../services/chat.service'
 
 const chatHandler = (io, socket) => {
     const sendMessage = (msg) => {
@@ -11,8 +11,6 @@ const chatHandler = (io, socket) => {
             socket.emit('error', 'Error saving message')
             return
         }
-
-        console.log('message: ', msg)
 
         io.sockets.emit('new_message', msg)
     })
