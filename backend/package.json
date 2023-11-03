@@ -9,6 +9,9 @@
     "build": "tsc --build",
     "tsc": "tsc"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "keywords": [],
   "author": "alvarovalverde",
   "license": "ISC",

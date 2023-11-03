@@ -10,7 +10,7 @@ async function main() {
             name: 'Global'
         }
     })
-    
+
     const admin = await prisma.user.upsert({
         where: { id: 1 },
         update: {},
@@ -24,6 +24,8 @@ async function main() {
             }
         }
     })
+    
+    console.log({ global, admin })
 }
 
 main()
