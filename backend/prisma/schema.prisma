@@ -28,6 +28,7 @@ model Message {
 
 model Chat {
   id        Int       @id @default(autoincrement())
+  publicId  String    @unique
   name      String    
   users     User[]
   messages  Message[]

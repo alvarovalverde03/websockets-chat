@@ -1,11 +1,12 @@
 import { Router } from "express"
-import { PrismaClient } from '@prisma/client'
+import { getChats } from "../services/chat.service"
 
 const router = Router()
-const prisma = new PrismaClient()
 
 router.get('/', async (req, res) => {
-    const chats = await prisma.chat.findMany({})
+    const chats = await getChats()
+
+    console.log(chats)
 
     return res.status(200).json({ chats })
 })

@@ -11,7 +11,7 @@ export function sendMessage (data: TMessage) {
         text: data.text,
         userName: data.userName,
         userId: Number(data.userId),
-        chatId: Number(data.chatId),
+        chatPublicId: data.chatPublicId,
         createdAt: data.createdAt
     }
 

@@ -11,6 +11,7 @@ export default function Chats() {
 
     async function getMessages() {
         const chats = await getApiChats()
+        console.log(chats)
         setChats(chats)
     }
 
@@ -25,7 +26,7 @@ export default function Chats() {
             <div className="overflow-y-auto lg:max-h-[55vh] h-full lg:pb-14 pb-20"> {/* chats */}
                 {chats.map((chat: any) => (
                     <Chat
-                        id={chat.id}
+                        id={chat.publicId}
                         name={chat.name}
                         lastMessage="text last message"
                         updatedAt={chat.updatedAt}

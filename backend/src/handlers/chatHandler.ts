@@ -12,8 +12,6 @@ const chatHandler = (io, socket) => {
             return
         }
 
-        console.log('message: ', msg)
-
         io.sockets.emit('new_message', msg)
     })
 

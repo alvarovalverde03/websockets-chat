@@ -2,7 +2,7 @@ export type TMessage = {
     text: string,
     userName: string,
     userId: number,
-    chatId?: number,
+    chatPublicId?: string,
     createdAt: string,
 }
 
