@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-const basePath = process.env.NODE_ENV === 'production' ? process.env.API_BASE_PATH : 'http://localhost:8000/api'
+const apiBasePath = process.env.NODE_ENV === 'production' ? process.env.API_BASE_PATH : 'http://localhost:8000/api'
 
 const nextConfig = {
   async rewrites() {
@@ -8,7 +8,7 @@ const nextConfig = {
       // Rewrite everything to `pages/index`
       {
         source: '/api/:path*',
-        destination: `${basePath}/:path*`,
+        destination: `${apiBasePath}/:path*`,
       },
     ]
   },

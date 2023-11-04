@@ -1,23 +1,14 @@
-'use client'
-
 import Image from "next/image"
 import Chat from "../chat/Chat"
 import Search from "../search/Search"
-import { useEffect, useState } from "react"
 import { getApiChats } from "@/utils/db"
 
-export default function Chats() {
-    const [chats, setChats] = useState([])
+async function fetchChats() {
+    return await getApiChats()
+}
 
-    async function getMessages() {
-        const chats = await getApiChats()
-        console.log(chats)
-        setChats(chats)
-    }
-
-    useEffect(() => {
-        getMessages()
-    }, [])
+export default async function Chats() {
+    const chats = await fetchChats()
 
     return (
         <>
@@ -35,7 +26,7 @@ export default function Chats() {
                     />
                 )
                 )}
-                {!chats && 
+                {!chats.length && 
                     <div className="flex flex-col items-center justify-center h-full">
                         <p className="text-gray-500">No chats yet</p>
                     </div>
