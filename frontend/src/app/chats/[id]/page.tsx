@@ -58,7 +58,7 @@ export default function Chats() {
             <div className="w-full h-full overflow-y-auto scroll-smooth">
                 <div className="w-full h-auto pt-2 pb-5 flex flex-col justify-end gap-2">
 
-                    {messages.map((message, index) => (
+                    {messages && messages.map((message, index) => (
                         <Message 
                             text={message.text} 
                             userName={message.userName} 
@@ -67,6 +67,12 @@ export default function Chats() {
                             key={index} 
                         />
                     ))}
+
+                    {!messages &&
+                        <div className="flex flex-col items-center justify-center h-full">
+                            <p className="text-gray-500">No messages yet</p>
+                        </div>
+                    }
                     
                     <div ref={ref} className="mb-[-10px]" />
                 </div>

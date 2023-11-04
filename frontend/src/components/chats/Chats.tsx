@@ -24,7 +24,7 @@ export default function Chats() {
             <Search />
 
             <div className="overflow-y-auto lg:max-h-[55vh] h-full lg:pb-14 pb-20"> {/* chats */}
-                {chats.map((chat: any) => (
+                {chats && chats.map((chat: any) => (
                     <Chat
                         id={chat.publicId}
                         name={chat.name}
@@ -35,6 +35,12 @@ export default function Chats() {
                     />
                 )
                 )}
+                {!chats && 
+                    <div className="flex flex-col items-center justify-center h-full">
+                        <p className="text-gray-500">No chats yet</p>
+                    </div>
+                }
+
             </div>
         </>
     )
