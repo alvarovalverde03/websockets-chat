@@ -6,11 +6,10 @@
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "start": "node build/src/index.js",
-    "build": "tsc --build",
-    "tsc": "tsc"
-  },
-  "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "build": "npm run prisma:generate && npm run prisma:dbpush && tsc --build",
+    "tsc": "tsc",
+    "prisma:dbpush": "prisma db push --schema=./prisma/schema.prisma",
+    "prisma:generate": "prisma generate --schema=./prisma/schema.prisma"
   },
   "keywords": [],
   "author": "alvarovalverde",
