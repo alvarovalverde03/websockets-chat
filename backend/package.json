@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "start": "node build/src/index.js",
-    "build": "npm run prisma:generate && npm run prisma:dbpush && tsc --build",
+    "build": "tsc --build",
     "tsc": "tsc",
     "prisma:dbpush": "prisma db push --schema=./prisma/schema.prisma",
     "prisma:generate": "prisma generate --schema=./prisma/schema.prisma"
