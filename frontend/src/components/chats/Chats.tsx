@@ -26,7 +26,7 @@ export default async function Chats() {
                     />
                 )
                 )}
-                {!chats.length && 
+                {(!chats || !chats.length) && 
                     <div className="flex flex-col items-center justify-center h-full">
                         <p className="text-gray-500">No chats yet</p>
                     </div>
