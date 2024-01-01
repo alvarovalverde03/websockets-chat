@@ -7,17 +7,19 @@ import Message from "@/components/message/Message"
 import type { TMessage } from "@/utils/db"
 import { getApiMessages } from "@/utils/db"
 import { usePathname } from 'next/navigation'
+import { getBackendUrl } from "@/utils/config"
 
 import { io } from "socket.io-client"
+
+const BACKEND_URL = getBackendUrl()
 
 export default function Chats() {
     const [messages, setMessages] = useState<TMessage[]>([])
     const ref = useRef<HTMLDivElement>(null)
     const path = usePathname()
     const chatPublicId = path.split('/').pop()
-        
-    let socket = io("http://localhost:8000", {'transports': ['websocket', 'polling']})
-    if (process.env.NODE_ENV === "production") socket = io("https://realtime-chat.1.ie-1.fl0.io", {'transports': ['websocket', 'polling']})
+    
+    const socket = io(BACKEND_URL, {'transports': ['websocket', 'polling']})
 
     // client-side
     socket.on("connect", () => {

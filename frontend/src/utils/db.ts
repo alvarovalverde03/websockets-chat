@@ -1,3 +1,7 @@
+import { getApiUrl } from "./config"
+
+const API_PATH = getApiUrl()
+
 export type TMessage = {
     text: string,
     userName: string,
@@ -8,11 +12,12 @@ export type TMessage = {
 
 export const getApiMessages = async () => {
     try {
-        const apiBasePath = process.env.NODE_ENV === 'production' ? process.env.API_BASE_PATH : 'http://localhost:3000/api'
-        const messages = await fetch(`${apiBasePath}/messages`)
-
+        const messages = await fetch(`${API_PATH}/messages`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        })
         const data = await messages.json()
-        console.log(data.messages)
+        
         return data.messages
     } catch (e) {
         console.log(e)
@@ -21,18 +26,12 @@ export const getApiMessages = async () => {
 
 export const getApiChats = async () => {
     try {
-        const apiBasePath = process.env.NODE_ENV === 'production' ? process.env.API_BASE_PATH : 'http://localhost:3000/api'
-        const chats = await fetch(`${apiBasePath}/chats`,
-            {
+        const chats = await fetch(`${API_PATH}/chats`, {
                 method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-        )
-
+                headers: {'Content-Type': 'application/json'}
+        })
         const data = await chats.json()
-        console.log(data.chats)
+        
         return data.chats
     } catch (e) {
         console.log(e)
@@ -41,16 +40,13 @@ export const getApiChats = async () => {
 
 export const postApiUser = async (username: string) => {
     try {
-        const apiBasePath = process.env.NODE_ENV === 'production' ? process.env.API_BASE_PATH : 'http://localhost:3000/api'
-        const user = await fetch(`${apiBasePath}/users`, {
+        const user = await fetch(`${API_PATH}/users`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ username })
         })
-
         const data = await user.json()
+
         return data.user
     } catch (e) {
         console.log(e)
@@ -59,10 +55,12 @@ export const postApiUser = async (username: string) => {
 
 export const getApiUsernameById = async (id: number) => {
     try {
-        const apiBasePath = process.env.NODE_ENV === 'production' ? process.env.API_BASE_PATH : 'http://localhost:3000/api'
-        const user = await fetch(`${apiBasePath}/users/${id}`)
-
+        const user = await fetch(`${API_PATH}/users/${id}`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        })
         const data = await user.json()
+
         return data.user
     } catch (e) {
         console.log(e)

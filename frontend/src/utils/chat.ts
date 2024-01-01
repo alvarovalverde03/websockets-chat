@@ -1,10 +1,11 @@
-import type { FormData } from '@/components/sendInput/SendInput'
 import type { TMessage } from './db'
+import { getBackendUrl } from './config'
 
 import { io } from "socket.io-client"
 
-let socket = io("http://localhost:8000", {'transports': ['websocket', 'polling']})
-if (process.env.NODE_ENV === "production") socket = io("https://realtime-chat.1.ie-1.fl0.io", {'transports': ['websocket', 'polling']})
+const BACKEND_URL = getBackendUrl()
+
+const socket = io(BACKEND_URL, {'transports': ['websocket', 'polling']})
 
 export function sendMessage (data: TMessage) {
     const message: TMessage = {
