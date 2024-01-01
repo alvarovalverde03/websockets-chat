@@ -7,7 +7,7 @@ const nextConfig = {
       {
         source: '/api/:path*',
         destination: process.env.NODE_ENV === 'production'
-        ? `${process.env.BACKEND_URL}/api/:path*`
+        ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/:path*`
         : 'http://locahost:8000/api/:path*',
       },
     ]
