@@ -30,13 +30,17 @@ export const createUser = async (username: string) => {
 
 export const getUserById = async (id: number) => {
   try {
-      const user = await fetch(`${API_PATH}/users/${id}`, {
+      const res = await fetch(`${API_PATH}/users/${id}`, {
           method: 'GET',
           headers: {'Content-Type': 'application/json'}
       })
-      const data = await user.json()
 
-      return data.user
+      if (!res.ok) {
+        console.log('HTTP-Error: ' + res.status)
+        return null
+      }
+  
+      return await res.json()
   } catch (e) {
       console.log(e)
   }
