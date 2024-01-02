@@ -37,32 +37,3 @@ export const getApiChats = async () => {
         console.log(e)
     }
 }
-
-export const postApiUser = async (username: string) => {
-    try {
-        const user = await fetch(`${API_PATH}/users`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ username })
-        })
-        const data = await user.json()
-
-        return data.user
-    } catch (e) {
-        console.log(e)
-    }
-}
-
-export const getApiUsernameById = async (id: number) => {
-    try {
-        const user = await fetch(`${API_PATH}/users/${id}`, {
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-        })
-        const data = await user.json()
-
-        return data.user
-    } catch (e) {
-        console.log(e)
-    }
-}

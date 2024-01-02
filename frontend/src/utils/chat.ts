@@ -8,6 +8,8 @@ const BACKEND_URL = getBackendUrl()
 const socket = io(BACKEND_URL, {'transports': ['websocket', 'polling']})
 
 export function sendMessage (data: TMessage) {
+    if (!data.text || !data.userName || !data.userId || !data.chatPublicId) return
+
     const message: TMessage = {
         text: data.text,
         userName: data.userName,

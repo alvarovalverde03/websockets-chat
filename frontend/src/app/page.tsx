@@ -1,6 +1,6 @@
 'use client'
 
-import { postApiUser } from "@/utils/db";
+import { createUser } from "@/utils/users";
 import { redirect, useRouter } from "next/navigation"
 import { useEffect, useState } from 'react';
 
@@ -10,14 +10,13 @@ export type FormData = {
 
 export default function Home() {
   const { push } = useRouter()
-
-  useEffect(() => {
-    if (localStorage.getItem('user_name') && localStorage.getItem('user_id')) redirect('/chats')
-  }, [])
-
   const [form, setForm] = useState<FormData>({
     name: ''
   })
+
+  useEffect(() => {
+    if (localStorage.getItem('user_name') && localStorage.getItem('user_id')) redirect('/chats')
+  }, [])  
 
   function handleInputOnChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target
@@ -28,13 +27,17 @@ export default function Home() {
   }
 
   async function handleSend(event: React.FormEvent<HTMLFormElement>) {
-    if (!form.name) return
+    event.preventDefault()
 
-    const user = await postApiUser(form.name)
+    const formData = new FormData(event.currentTarget)
+    const name = formData.get('name');
+    if (!name) return;
 
-    localStorage.setItem('user_name', form.name)
+    const { user } = await createUser(name?.toString())
+    if (!user) return
+    localStorage.setItem('user_name', user.username)
     localStorage.setItem('user_id', user.id)
-
+    
     push('/chats')
   }
 

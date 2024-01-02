@@ -18,7 +18,7 @@ app.use('/api/messages', messagesRoutes)
 app.use('/api/chats', chatsRoutes)
 
 const server = app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`)
+  console.log(`⚡️[server]: Server is running ${process.env.NODE_ENV === 'production' ? '' : `at http://localhost:${port}`}`)
 })
 
 // Socket.io

@@ -6,7 +6,7 @@ import SendInput from "@/components/sendInput/SendInput"
 import Message from "@/components/message/Message"
 import type { TMessage } from "@/utils/db"
 import { getApiMessages } from "@/utils/db"
-import { usePathname } from 'next/navigation'
+import { redirect, usePathname } from 'next/navigation'
 import { getBackendUrl } from "@/utils/config"
 
 import { io } from "socket.io-client"
@@ -20,6 +20,10 @@ export default function Chats() {
     const chatPublicId = path.split('/').pop()
     
     const socket = io(BACKEND_URL, {'transports': ['websocket', 'polling']})
+    
+    useEffect(() => {
+        if (!localStorage.getItem('user_name') || !localStorage.getItem('user_id')) redirect('/')
+    }, [])
 
     // client-side
     socket.on("connect", () => {
